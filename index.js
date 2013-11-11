@@ -10,7 +10,7 @@
       return this.semana = partialize$.apply(this, [definition, [void 8], [0]]);
     }
   })(function(_){
-    var title, days, disp, isWeekdays, isWeekend, splitRuns, semana;
+    var title, days, disp, isEveryday, isWeekdays, isWeekend, splitRuns, semana;
     title = function(it){
       return it[0].toUpperCase().concat(it.slice(1));
     };
@@ -24,6 +24,9 @@
       'sat': 'sat',
       'sun': 'sun'
     }, title));
+    isEveryday = function(arr){
+      return _.isEmpty(_.difference(['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'], arr));
+    };
     isWeekdays = function(arr){
       return _.isEmpty(_.difference(['mon', 'tue', 'wed', 'thu', 'fri'], arr));
     };
@@ -57,6 +60,8 @@
           return function(it){
             return disp[it];
           }(_.head(run));
+        case !isEveryday(run):
+          return "Every day";
         case !isWeekdays(run):
           return "Weekdays";
         case !isWeekend(run):
