@@ -7,6 +7,8 @@ title = -> it.0.to-upper-case! ++ it.slice 1
 days = [\mon \tue \wed \thu \fri \sat \sun]
 disp = _.zip-object days, _.map {\mon \tue \wed \thu \fri \sat \sun}, title
 
+is-everyday = (arr)->
+	_.is-empty _.difference <[ mon tue wed thu fri sat sun ]> arr
 is-weekdays = (arr)->
 	_.is-empty _.difference <[ mon tue wed thu fri ]> arr
 is-weekend = (arr)->
@@ -30,6 +32,7 @@ return semana = (wkdays)->
 		run = _.head runs
 		switch
 		| run.length is 1 => (disp.) _.head run
+		| is-everyday run => "Every day"
 		| is-weekdays run => "Weekdays"
 		| is-weekend run  => "Weekends"
 		| otherwise => "#{(disp.) _.head run} - #{(disp.) _.last run}"
