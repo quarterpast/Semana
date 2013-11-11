@@ -1,6 +1,6 @@
 {
   "name": "semana",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "weekday formatter",
   "devDependencies": {
     "LiveScript": "~1.2.0",
