@@ -1,37 +1,35 @@
-{empty,lists-to-obj,replicate,map,head,tail,last,keys,compact,Obj,join,zip-with,and-list,values} = require \prelude-ls
+_ <- (definition) ->
+	| typeof define is \function and define.amd? => define [\lodash] definition
+	| typeof exports is \object => module.exports = definition require \lodash
+	| otherwise => @semana = definition _
 
-title = -> (head it)to-upper-case! ++ tail it
-disp = Obj.map title, {\mon \tue \wed \thu \fri \sat \sun}
-days = keys disp
+title = -> it.0.to-upper-case! ++ it.slice 1
+days = [\mon \tue \wed \thu \fri \sat \sun]
+disp = _.zip-object days, _.map {\mon \tue \wed \thu \fri \sat \sun}, title
 
-mkdays = (days)->
-	lists-to-obj days, replicate days.length, true
-
-is-weekdays = (obj)->
-	obj.mon and obj.tue and obj.wed and obj.thu and obj.fri and not obj.sat and not obj.sun
-is-weekend = (obj)->
-	not obj.mon and not obj.tue and not obj.wed and not obj.thu and not obj.fri and obj.sat and obj.sun
-
-unmkdays = keys . Obj.compact
+is-weekdays = (arr)->
+	_.is-empty _.difference <[ mon tue wed thu fri ]> arr
+is-weekend = (arr)->
+	_.is-empty _.difference <[ sat sun ]> arr
 
 split-runs = (wkdays)->
 	out = []
 	counter = 0
 	for day in days
-		if wkdays[day]
+		if day in wkdays
 			out[][counter].push day
 		else if out[counter]
 			counter++
-	map mkdays, out
+	out
 
 module.exports = semana = (wkdays)->
 	runs = split-runs wkdays
 	switch
-	| runs.length > 1 => join ', ' map semana, runs
+	| runs.length > 1 => _.map runs, semana .join ', '
 	| otherwise =>
-		run = unmkdays head runs
+		run = _.head runs
 		switch
-		| run.length is 1 => (disp.) head run
-		| is-weekdays head runs => "Weekdays"
-		| is-weekend head runs  => "Weekends"
-		| otherwise => "#{(disp.) head run} - #{(disp.) last run}"
+		| run.length is 1 => (disp.) _.head run
+		| is-weekdays run => "Weekdays"
+		| is-weekend run  => "Weekends"
+		| otherwise => "#{(disp.) _.head run} - #{(disp.) _.last run}"
