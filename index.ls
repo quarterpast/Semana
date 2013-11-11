@@ -1,13 +1,13 @@
-{empty,lists-to-obj,replicate,map,head,tail,last,keys,compact,Obj,join,zip-with,and-list,values,difference} = require \prelude-ls
+_ = require \lodash
 
-title = -> (head it)to-upper-case! ++ tail it
-disp = Obj.map title, {\mon \tue \wed \thu \fri \sat \sun}
-days = keys disp
+title = -> it.0.to-upper-case! ++ it.slice 1
+days = [\mon \tue \wed \thu \fri \sat \sun]
+disp = _.zip-object days, _.map {\mon \tue \wed \thu \fri \sat \sun}, title
 
 is-weekdays = (arr)->
-	empty difference <[ mon tue wed thu fri ]> arr
+	_.is-empty _.difference <[ mon tue wed thu fri ]> arr
 is-weekend = (arr)->
-	empty difference <[ sat sun ]> arr
+	_.is-empty _.difference <[ sat sun ]> arr
 
 split-runs = (wkdays)->
 	out = []
@@ -22,11 +22,11 @@ split-runs = (wkdays)->
 module.exports = semana = (wkdays)->
 	runs = split-runs wkdays
 	switch
-	| runs.length > 1 => join ', ' map semana, runs
+	| runs.length > 1 => _.map runs, semana .join ', '
 	| otherwise =>
-		run = head runs
+		run = _.head runs
 		switch
-		| run.length is 1 => (disp.) head run
+		| run.length is 1 => (disp.) _.head run
 		| is-weekdays run => "Weekdays"
 		| is-weekend run  => "Weekends"
-		| otherwise => "#{(disp.) head run} - #{(disp.) last run}"
+		| otherwise => "#{(disp.) _.head run} - #{(disp.) _.last run}"
