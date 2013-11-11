@@ -1,4 +1,7 @@
-_ = require \lodash
+_ <- (definition) ->
+	| typeof define is \function and define.amd? => define [\lodash] definition
+	| typeof exports is \object => module.exports = definition require \lodash
+	| otherwise => @semana = definition _
 
 title = -> it.0.to-upper-case! ++ it.slice 1
 days = [\mon \tue \wed \thu \fri \sat \sun]
