@@ -4,5 +4,13 @@
   "description": "weekday formatter",
   "dependencies": {
     "prelude-ls": "~1.0.3"
-  }
+  },
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "*.ls",
+    "package.json",
+    "Makefile",
+    "test.js"
+  ]
 }
