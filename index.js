@@ -44,7 +44,7 @@
       }
       return out;
     };
-    return module.exports = semana = function(wkdays){
+    return semana = function(wkdays){
       var runs, run;
       runs = splitRuns(wkdays);
       switch (false) {
