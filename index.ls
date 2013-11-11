@@ -27,6 +27,7 @@ split-runs = (wkdays)->
 return semana = (wkdays)->
 	runs = split-runs wkdays
 	switch
+	| _.is-empty runs => ""
 	| runs.length > 1 => _.map runs, semana .join ', '
 	| otherwise =>
 		run = _.head runs

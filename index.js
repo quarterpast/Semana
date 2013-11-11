@@ -51,6 +51,8 @@
       var runs, run;
       runs = splitRuns(wkdays);
       switch (false) {
+      case !_.isEmpty(runs):
+        return "";
       case !(runs.length > 1):
         return _.map(runs, semana).join(', ');
       default:
