@@ -1,6 +1,6 @@
 {
   "name": "semana",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "weekday formatter",
   "dependencies": {
     "lodash": "~2.3.0"
