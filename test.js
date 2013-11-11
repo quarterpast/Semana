@@ -27,3 +27,6 @@ assert("Mon, Thu, Sat" === getDaysString(['mon', 'thu', 'sat']));
 assert("Mon, Thu - Fri" === getDaysString(['mon', 'thu', 'fri']));
 assert("Mon - Wed, Sat" === getDaysString(['mon', 'tue', 'wed', 'sat']));
 assert("Mon - Wed, Weekends" === getDaysString(['mon', 'tue', 'wed', 'sat', 'sun']));
+
+// empty
+assert("" === getDaysString([]));
