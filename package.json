@@ -5,5 +5,8 @@
   "devDependencies": {
     "LiveScript": "~1.2.0",
     "better-assert": "~1.0.0"
+  },
+  "dependencies": {
+    "prelude-ls": "~1.0.3"
   }
 }
