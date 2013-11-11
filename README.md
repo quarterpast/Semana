@@ -10,9 +10,7 @@ Semana is available via npm and Bower:
 ```
 npm install semana
 ```
-```
-bower install semana
-```
+~~```bower install semana```~~ nope, Bower doesn't do build steps and I don't want to put compiled JS in the repo.
 Usage
 -----
 ```javascript
