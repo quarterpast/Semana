@@ -17,9 +17,9 @@ Usage
 -----
 ```javascript
 var semana = require('semana');
-semana({mon: true, wed: true, fri: true}) //=> "Mon, Wed, Fri"
-semana({mon: true, tue: true, wed: true}) //=> "Mon - Wed"
-semana({sat: true, sun: true}) //=> "Weekends"
+semana(['mon', 'wed', 'fri']) //=> "Mon, Wed, Fri"
+semana(['mon', 'tue', 'wed']) //=> "Mon - Wed"
+semana(['sat', 'sun']) //=> "Weekends"
 ```
 Licence
 -------
