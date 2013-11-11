@@ -17,9 +17,10 @@ assert("Wed - Thu" === getDaysString(['wed', 'thu']));
 // but not across week boundaries
 assert("Mon, Sun" === getDaysString(['mon', 'sun']));
 
-// weekdays, weekends
+// weekdays, weekends, every day
 assert("Weekdays" === getDaysString(['mon', 'tue', 'wed', 'thu', 'fri']));
 assert("Weekends" === getDaysString(['sat', 'sun']));
+assert("Every day" === getDaysString(['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']));
 
 // disjoint runs should be comma'd
 assert("Mon, Thu, Sat" === getDaysString(['mon', 'thu', 'sat']));
