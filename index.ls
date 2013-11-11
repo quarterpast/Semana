@@ -22,7 +22,7 @@ split-runs = (wkdays)->
 			counter++
 	out
 
-module.exports = semana = (wkdays)->
+return semana = (wkdays)->
 	runs = split-runs wkdays
 	switch
 	| runs.length > 1 => _.map runs, semana .join ', '
