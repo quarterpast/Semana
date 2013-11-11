@@ -1,5 +1,3 @@
-LS_OPTS=-k
-
 all: index.js
 
 %.js: %.ls
