@@ -19,6 +19,8 @@ assert("Mon, Sun" === getDaysString(['mon', 'sun']));
 
 // weekdays, weekends, every day
 assert("Weekdays" === getDaysString(['mon', 'tue', 'wed', 'thu', 'fri']));
+assert("Weekdays, Sat" === getDaysString(['mon', 'tue', 'wed', 'thu', 'fri', 'sat']));
+assert("Weekdays, Sun" === getDaysString(['mon', 'tue', 'wed', 'thu', 'fri', 'sun']));
 assert("Weekends" === getDaysString(['sat', 'sun']));
 assert("Every day" === getDaysString(['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']));
 
