@@ -1,8 +1,5 @@
 _ = require \underscore
-
-title = -> it.0.to-upper-case! ++ it.slice 1
 days = [\mon \tue \wed \thu \fri \sat \sun]
-disp = _.object days, _.map {\mon \tue \wed \thu \fri \sat \sun}, title
 
 same-elems = (...args)->
 	_.all args, (.length is args.0.length)
@@ -25,16 +22,20 @@ split-runs = (wkdays)->
 			counter++
 	out
 
-module.exports = semana = (wkdays)->
+semana-base = (strings,wkdays)-->
 	runs = split-runs wkdays
 	switch
 	| _.is-empty runs => ""
-	| runs.length > 1 => _.map runs, semana .join ', '
+	| runs.length > 1 => _.map runs, (semana-base strings) .join ', '
 	| otherwise =>
 		run = _.head runs
 		switch
-		| run.length is 1 => disp[_.head run]
-		| is-everyday run => "Every day"
-		| is-weekdays run => "Weekdays"
-		| is-weekend run  => "Weekends"
-		| otherwise => "#{disp[_.head run]} - #{disp[_.last run]}"
+		| run.length is 1 => strings[_.head run]
+		| is-everyday run => strings.everyday
+		| is-weekdays run => strings.weekdays
+		| is-weekend run  => strings.weekend
+		| otherwise => "#{strings[_.head run]} - #{strings[_.last run]}"
+
+semana = semana-base require './en.json'
+semana.lang = semana-base
+module.exports = semana
