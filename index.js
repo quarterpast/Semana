@@ -3,9 +3,9 @@
   (function(definition){
     switch (false) {
     case !(typeof define === 'function' && define.amd != null):
-      return define(['lodash'], definition);
+      return define(['underscore'], definition);
     case typeof exports !== 'object':
-      return module.exports = definition(require('lodash'));
+      return module.exports = definition(require('underscore'));
     default:
       return this.semana = partialize$.apply(this, [definition, [void 8], [0]]);
     }
@@ -15,7 +15,7 @@
       return it[0].toUpperCase().concat(it.slice(1));
     };
     days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-    disp = _.zipObject(days, _.map({
+    disp = _.object(days, _.map({
       'mon': 'mon',
       'tue': 'tue',
       'wed': 'wed',
