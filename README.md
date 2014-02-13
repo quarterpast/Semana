@@ -1,4 +1,4 @@
-Semana
+Semana [![](https://api.travis-ci.org/quarterto/Semana.png)](https://travis-ci.org/quarterto/Semana)
 =====
 weekday formatter
 
