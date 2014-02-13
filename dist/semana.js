@@ -27,7 +27,7 @@
     }({
         1: [
             function (_dereq_, module, exports) {
-                var title, days, disp, isEveryday, isWeekdays, isWeekend, splitRuns, semana;
+                var title, days, disp, sameElems, isEveryday, isWeekdays, isWeekend, splitRuns, semana, slice$ = [].slice;
                 ;
                 title = function (it) {
                     return it[0].toUpperCase().concat(it.slice(1));
@@ -50,8 +50,15 @@
                     'sat': 'sat',
                     'sun': 'sun'
                 }, title));
+                sameElems = function () {
+                    var args;
+                    args = slice$.call(arguments);
+                    return _.all(args, function (it) {
+                        return it.length === args[0].length;
+                    }) && _.intersection.apply(_, args).length === args[0].length;
+                };
                 isEveryday = function (arr) {
-                    return _.isEmpty(_.difference([
+                    return sameElems(arr, [
                         'mon',
                         'tue',
                         'wed',
@@ -59,22 +66,22 @@
                         'fri',
                         'sat',
                         'sun'
-                    ], arr));
+                    ]);
                 };
                 isWeekdays = function (arr) {
-                    return _.isEmpty(_.difference([
+                    return sameElems(arr, [
                         'mon',
                         'tue',
                         'wed',
                         'thu',
                         'fri'
-                    ], arr));
+                    ]);
                 };
                 isWeekend = function (arr) {
-                    return _.isEmpty(_.difference([
+                    return sameElems(arr, [
                         'sat',
                         'sun'
-                    ], arr));
+                    ]);
                 };
                 splitRuns = function (wkdays) {
                     var out, counter, i$, ref$, len$, day;
@@ -102,9 +109,7 @@
                         run = _.head(runs);
                         switch (false) {
                         case run.length !== 1:
-                            return function (it) {
-                                return disp[it];
-                            }(_.head(run));
+                            return disp[_.head(run)];
                         case !isEveryday(run):
                             return 'Every day';
                         case !isWeekdays(run):
@@ -112,11 +117,7 @@
                         case !isWeekend(run):
                             return 'Weekends';
                         default:
-                            return function (it) {
-                                return disp[it];
-                            }(_.head(run)) + ' - ' + function (it) {
-                                return disp[it];
-                            }(_.last(run));
+                            return disp[_.head(run)] + ' - ' + disp[_.last(run)];
                         }
                     }
                 };
