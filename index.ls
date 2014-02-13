@@ -1,7 +1,4 @@
-_ <- (definition) ->
-	| typeof define is \function and define.amd? => define [\underscore] definition
-	| typeof exports is \object => module.exports = definition require \underscore
-	| otherwise => @semana = definition _
+_ = require \underscore
 
 title = -> it.0.to-upper-case! ++ it.slice 1
 days = [\mon \tue \wed \thu \fri \sat \sun]
@@ -24,7 +21,7 @@ split-runs = (wkdays)->
 			counter++
 	out
 
-return semana = (wkdays)->
+module.exports = semana = (wkdays)->
 	runs = split-runs wkdays
 	switch
 	| _.is-empty runs => ""

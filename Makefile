@@ -1,6 +1,6 @@
-ENTRY_FILE="./index.js"
+ENTRY_FILE="./index.ls"
 MODULE_NAME="semana"
-DEPS := $(shell node_modules/.bin/browserify -p externalities --deps $(ENTRY_FILE) | node_modules/.bin/jsonpath '$$..id')
+DEPS := $(shell node_modules/.bin/browserify -t liveify -p externalities --deps $(ENTRY_FILE) | node_modules/.bin/jsonpath '$$..id')
 
 all: dist/semana.js
 min: dist/semana.min.js
@@ -10,7 +10,7 @@ dist/%.min.js: dist/%.js
 
 dist/%.js: $(DEPS)
 	mkdir -p $(@D)
-	node_modules/.bin/browserify -p externalities -o $@ $(ENTRY_FILE)
+	node_modules/.bin/browserify -t liveify -p externalities -o $@ $(ENTRY_FILE)
 
 .PHONY: test clean
 
