@@ -8,5 +8,8 @@
   },
   "dependencies": {
     "underscore": "~1.6.0"
+  },
+  "scripts": {
+    "test": "make test"
   }
 }
