@@ -1,9 +1,9 @@
 {
   "name": "semana",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "weekday formatter",
   "dependencies": {
-    "lodash": "~2.3.0"
+    "underscore": "~1.6.0"
   },
   "ignore": [
     "node_modules",
@@ -11,5 +11,6 @@
     "package.json",
     "Makefile",
     "test.js"
-  ]
+  ],
+  "main": ["dist/semana.min.js"]
 }
