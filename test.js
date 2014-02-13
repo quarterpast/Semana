@@ -58,7 +58,7 @@ assert("Do" === semanaEs(['sun']));
 
 // runs should be hyphen'd
 assert("Lu - Mx" === semanaEs(['mon', 'tue', 'wed']));
-assert("Mx - Vi" === semanaEs(['wed', 'thu']));
+assert("Mx - Ju" === semanaEs(['wed', 'thu']));
 
 // but not across week boundaries
 assert("Lu, Do" === semanaEs(['mon', 'sun']));
