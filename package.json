@@ -4,12 +4,27 @@
   "description": "weekday formatter",
   "devDependencies": {
     "LiveScript": "~1.2.0",
-    "better-assert": "~1.0.0"
+    "better-assert": "~1.0.0",
+    "externalities": "~0.2.2",
+    "liveify": "~0.3.1",
+    "browserify": "~3.28.2",
+    "JSONPathCLI": "~0.1.1",
+    "uglify-js2": "~2.1.11"
   },
   "dependencies": {
     "underscore": "~1.6.0"
   },
   "scripts": {
-    "test": "make test"
-  }
+    "test": "make test",
+    "prepublish": "make test"
+  },
+  "externalities": {
+    "globalExport": "semana",
+    "underscore": {
+      "commonjs": "underscore",
+      "requirejs": "underscore",
+      "globalvar": "_"
+    }
+  },
+  "main": "dist/semana.js"
 }
