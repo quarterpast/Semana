@@ -1,5 +1,5 @@
 var assert = require('better-assert'),
-getDaysString = require('./index.js');
+getDaysString = require('./dist/semana.js');
 
 // single days should just print the day
 assert("Mon" === getDaysString(['mon']));
@@ -32,3 +32,4 @@ assert("Mon - Wed, Weekends" === getDaysString(['mon', 'tue', 'wed', 'sat', 'sun
 
 // empty
 assert("" === getDaysString([]));
+
