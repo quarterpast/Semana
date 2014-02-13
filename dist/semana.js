@@ -27,11 +27,25 @@
     }({
         1: [
             function (_dereq_, module, exports) {
-                var title, days, disp, sameElems, isEveryday, isWeekdays, isWeekend, splitRuns, semana, slice$ = [].slice;
-                ;
-                title = function (it) {
-                    return it[0].toUpperCase().concat(it.slice(1));
+                module.exports = {
+                    'mon': 'Mon',
+                    'tue': 'Tue',
+                    'wed': 'Wed',
+                    'thu': 'Thu',
+                    'fri': 'Fri',
+                    'sat': 'Sat',
+                    'sun': 'Sun',
+                    'everyday': 'Every day',
+                    'weekdays': 'Weekdays',
+                    'weekend': 'Weekends'
                 };
+            },
+            {}
+        ],
+        2: [
+            function (_dereq_, module, exports) {
+                var days, sameElems, isEveryday, isWeekdays, isWeekend, splitRuns, semanaBase, semana, slice$ = [].slice;
+                ;
                 days = [
                     'mon',
                     'tue',
@@ -41,15 +55,6 @@
                     'sat',
                     'sun'
                 ];
-                disp = _.object(days, _.map({
-                    'mon': 'mon',
-                    'tue': 'tue',
-                    'wed': 'wed',
-                    'thu': 'thu',
-                    'fri': 'fri',
-                    'sat': 'sat',
-                    'sun': 'sun'
-                }, title));
                 sameElems = function () {
                     var args;
                     args = slice$.call(arguments);
@@ -97,30 +102,33 @@
                     }
                     return out;
                 };
-                module.exports = semana = function (wkdays) {
+                semanaBase = curry$(function (strings, wkdays) {
                     var runs, run;
                     runs = splitRuns(wkdays);
                     switch (false) {
                     case !_.isEmpty(runs):
                         return '';
                     case !(runs.length > 1):
-                        return _.map(runs, semana).join(', ');
+                        return _.map(runs, semanaBase(strings)).join(', ');
                     default:
                         run = _.head(runs);
                         switch (false) {
                         case run.length !== 1:
-                            return disp[_.head(run)];
+                            return strings[_.head(run)];
                         case !isEveryday(run):
-                            return 'Every day';
+                            return strings.everyday;
                         case !isWeekdays(run):
-                            return 'Weekdays';
+                            return strings.weekdays;
                         case !isWeekend(run):
-                            return 'Weekends';
+                            return strings.weekend;
                         default:
-                            return disp[_.head(run)] + ' - ' + disp[_.last(run)];
+                            return strings[_.head(run)] + ' - ' + strings[_.last(run)];
                         }
                     }
-                };
+                });
+                semana = semanaBase(_dereq_('./en.json'));
+                semana.lang = semanaBase;
+                module.exports = semana;
                 function in$(x, xs) {
                     var i = -1, l = xs.length >>> 0;
                     while (++i < l)
@@ -128,8 +136,18 @@
                             return true;
                     return false;
                 }
+                function curry$(f, bound) {
+                    var context, _curry = function (args) {
+                            return f.length > 1 ? function () {
+                                var params = args ? args.concat() : [];
+                                context = bound ? context || this : this;
+                                return params.push.apply(params, arguments) < f.length && arguments.length ? _curry.call(context, params) : f.apply(context, params);
+                            } : f;
+                        };
+                    return _curry();
+                }
             },
-            {}
+            { './en.json': 1 }
         ]
-    }, {}, [1])(1);
+    }, {}, [2])(2);
 })
