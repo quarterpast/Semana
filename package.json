@@ -7,6 +7,6 @@
     "better-assert": "~1.0.0"
   },
   "dependencies": {
-    "lodash": "~2.2.1"
+    "underscore": "~1.6.0"
   }
 }
