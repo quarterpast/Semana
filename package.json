@@ -15,7 +15,8 @@
     "underscore": "~1.6.0"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "prepublish": "make test"
   },
   "externalities": {
     "globalExport": "semana",
@@ -24,5 +25,6 @@
       "requirejs": "underscore",
       "globalvar": "_"
     }
-  }
+  },
+  "main": "dist/semana.js"
 }
