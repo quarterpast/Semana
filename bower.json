@@ -2,9 +2,6 @@
   "name": "semana",
   "version": "0.3.1",
   "description": "weekday formatter",
-  "dependencies": {
-    "underscore": "~1.6.0"
-  },
   "ignore": [
     "node_modules",
     "bower_components",
