@@ -1,16 +1,21 @@
+export SHELL := "/bin/bash"
+export PATH  := $(shell npm bin):$(PATH)
+
 ENTRY_FILE="./index.ls"
 MODULE_NAME="semana"
-DEPS := $(shell node_modules/.bin/browserify -t liveify -p externalities --deps $(ENTRY_FILE) | node_modules/.bin/jsonpath '$$..id')
+BROWSERIFY_OPTS = -t liveify --standalone $(MODULE_NAME)
+
+DEPS := $(shell PATH=$(PATH) browserify $(BROWSERIFY_OPTS) --list $(ENTRY_FILE))
 
 all: dist/semana.js
 min: dist/semana.min.js
 
 dist/%.min.js: dist/%.js
-	node_modules/.bin/uglifyjs2 $< -o $@
+	uglifyjs2 $< -o $@
 
 dist/%.js: $(DEPS)
 	mkdir -p $(@D)
-	node_modules/.bin/browserify -t liveify -p externalities -o $@ $(ENTRY_FILE)
+	browserify $(BROWSERIFY_OPTS) $(ENTRY_FILE) | derequire > $@
 
 .PHONY: test clean
 
